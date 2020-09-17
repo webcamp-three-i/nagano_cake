@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
 
   # admin
-    devise_for :admin
+    devise_for :admins, controllers:{
+      sessions: 'admins/sessions',
+      passwords: 'admins/passwords',
+      registrations: 'admins/registrations'
+    }
   	namespace :admin do
   	resources :customers,only: [:index, :show, :edit, :update]
   	resources :products,only: [:index, :new, :create, :show, :edit, :update,]
@@ -11,10 +15,10 @@ Rails.application.routes.draw do
   	resources :orders,only: [:index,:show,:update]
     resource :order_products,only: [:update]
 
-
-  	get 'top' => 'home#top'
   	get 'search' => 'search#search'
   	end
+
+    root 'admin/home#top'
 
    # customer
    devise_for :customers, :controllers => {
@@ -24,8 +28,6 @@ Rails.application.routes.draw do
    }
 
   	get 'home/about' => 'customer/home#about'
-    root 'customer/home#top'
-
 
   scope module: :customer do
     resource :customers,only: [:show, :edit, :update] do
