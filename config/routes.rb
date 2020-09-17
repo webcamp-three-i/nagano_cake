@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   	get 'search' => 'search#search'
   	end
 
-    root 'admin/home#top'
+    get  'admins/top' => 'admin/home#top'
 
    # customer
    devise_for :customers, :controllers => {
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     :passwords => 'customers/passwords'
    }
 
+    root 'customer/home#top'
   	get 'home/about' => 'customer/home#about'
 
   scope module: :customer do
