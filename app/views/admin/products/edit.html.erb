@@ -1,0 +1,8 @@
+<h2>商品編集</h2>
+
+<%= form_for @product, url: admin_product_path, method: :PATCH do |f| %>
+  <%= render 'form', product: @product, f: f %>
+  <div class="product-form">
+    <%= f.submit "変更を保存" %>
+  </div>
+<% end %>
