@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container clearfix">
+
+        <% if admin_signed_in? %>
+          <%= render 'layouts/admin_header' %>
+        <% else %>
+          <%= render 'layouts/customer_header' %>
+        <% end %>
+
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
