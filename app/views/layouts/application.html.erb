@@ -11,6 +11,17 @@
   </head>
 
   <body>
+    <header>
+      <div class="container">
+
+        <% if admin_signed_in? %>
+          <%= render 'layouts/admin_header' %>
+        <% else %>
+          <%= render 'layouts/customer_header' %>
+        <% end %>
+
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
