@@ -31,10 +31,10 @@ Rails.application.routes.draw do
   	get 'home/about' => 'customer/home#about'
 
   scope module: :customer do
-    resource :customers,only: [:show, :edit, :update] do
-  		collection do
-  	     get 'quit'
-  	     patch 'out'
+    resources :customers,only: [:show, :edit, :update] do
+  		member do
+  	     get 'quit', to: 'customers#quit'
+  	     patch 'out', to: 'customers#out'
   	  end
   	end
   end

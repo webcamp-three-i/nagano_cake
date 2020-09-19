@@ -16,4 +16,10 @@ class Customer < ApplicationRecord
   validates :residence, presence: true
   validates :phone_number, presence: true,format:/\A[0-9]+\z/
 
+  #退会機能（有効会員はtrue、退会済み会員はfalse、有効会員はログイン可能)
+  enum is_valid: {Available: true, Invalid: false}
+    def active_for_authentication?
+      super && (self.is_valid === "Available")
+    end
+
 end
