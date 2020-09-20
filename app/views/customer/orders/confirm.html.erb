@@ -11,17 +11,18 @@
   </thead>
   <tbody>
     <% sum_all = 0 %>
-    <%= @cart_items.each do |cart_item| %>
+    <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, fallback: "no_img.jpg" %></td>
       <td><%= cart_item.product.name %></td>
-      <td><%= price_include_tax(cart_item.product.price) %></td>
+      <td><%= price_include_tax(cart_item.product.price_without_tax).to_i %></td>
       <td><%= cart_item.quantity %></td>
       <td>
-        <%= sum_product = price_include_tax(cart_item.product.price) * cart_item.quantity %>
-        <% sum_all += sumproduct %>
+        <%= sum_product = price_include_tax(cart_item.product.price_without_tax).to_i * cart_item.quantity %>
+        <% sum_all += sum_product %>
       </td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 
