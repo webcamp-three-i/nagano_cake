@@ -3,7 +3,13 @@ class Customer::ProductsController < ApplicationController
 
 	def index
 		@genres = Genre.all
-		@products = Product.where(sales_status: true).page(params[:page]).per(8)
+		# ジャンル検索された場合とそうでない場合
+		if params["genre"]
+			@products = Product.where(genre_id: params["genre"]).page(params[:page]).per(8)
+			@genre = Genre.find(params["genre"])
+		else
+			@products = Product.where(sales_status: true).page(params[:page]).per(8)
+		end
 	end
 
 	def show
