@@ -4,13 +4,14 @@ class Customer::OrdersController < ApplicationController
   
   def new
     @order = Order.new
+    @shipping_addresses = ShippingAddress.where(customer: current_customer) #配送先モデルからログイン会員を取得して定義
   end
 
   def confirm #注文確認画面
     @order = Order.new
     @cart_items = current_customer.cart_items
     #ラジオボタンで選択した注文の支払方法を、オーダーidカラムと支払方法カラムをparamsで受け取る
-    @order.payment_method(params[:order][:payment_method]) 
+    @order.payment_method = params[:order][:payment_method]
     #ラジオボタンで選択したお届け先を、オーダーidとviewで作った:addプロパティをparamsで受け取る
     @add = params[:order][:add].to_i
     case @add
@@ -22,10 +23,10 @@ class Customer::OrdersController < ApplicationController
         @sta = params[:order][:address].to_i
         @address = ShippingAddress.find(@sta)
         @order.postal_code = @address.postal_code
-        @order.address = @address.address
+        @order.address = @address.residence
         @order.name = @address.name
       when 3
-        @order.post_code = params[:order][:new_add][:postal_code]
+        @order.postal_code = params[:order][:new_add][:postal_code]
         @order.address = params[:order][:new_add][:address]
         @order.name = params[:order][new_add][:name]
     end
@@ -54,8 +55,8 @@ class Customer::OrdersController < ApplicationController
       end
       @order.save
       # addressで住所モデル検索、該当データなければ新規作成
-      if Address.find_by(residence: @order.address).nil?
-        @address = Address.new
+      if ShippingAddress.find_by(residence: @order.address).nil?
+        @address = ShippingAddress.new
         @address.postal_code = @order.postal_code
         @address.residence = @order.adress
         @address.name = @order.name
@@ -63,14 +64,14 @@ class Customer::OrdersController < ApplicationController
         @address.save
       end
 
-      # cart_itemsの内容をorder_itemsに新規登録
+      # cart_itemsの内容をorder_productsに新規登録
       current_customer.cart_items.each do |cart_item|
-        order_item = @order.order_items.build
-        order_item.order_id = @order.id
-        order_item.product_id = cart_item.product_id
-        order_item.quantity = cart_item.quantity
-        order_item.tax_included_price = cart_item.product.price_without_tax
-        order_item.save
+        order_products = @order.order_products.build
+        order_products.order_id = @order.id
+        order_products.product_id = cart_item.product_id
+        order_products.quantity = cart_item.quantity
+        order_products.tax_included_price = cart_item.product.price_without_tax
+        order_products.save
         cart_item.destroy #order_itemに情報を移したらcart_itemは消去
       end
       render :thanks
@@ -99,7 +100,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit()
+    params.require(:order).permit(:postal_code, :address, :name)
   end
 
 end

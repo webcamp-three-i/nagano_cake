@@ -1,6 +1,6 @@
 <h2>注文情報入力</h2>
 
-<%= form_with model: @order, url: confirm_customer_orders_path, method: :post, local: true do |f| %>
+<%= form_with model: @order, url: confirm_customer_orders_path(@customer), method: :post, local: true do |f| %>
 
   <h3><strong><%= f.label :支払方法 %></strong></h3>
     <label>
@@ -24,7 +24,8 @@
       <%= f.radio_button :add, 2 %>登録済み住所から選択
     </label>
       <p>
-        <%= f.collection_select :residence, @customer.residence, :id, :address %> <!--不明箇所-->
+        <!--form_withで送信する@orderモデルのaddress属性。contorollerで定義したログイン会員。valueはid。表示するのは定義した住所。-->
+        <%= f.collection_select :address, @shipping_addresses, :id, :order_address %> 
       </p>
     <label>
       <%= f.radio_button :add, 3 %>新しいお届け先
