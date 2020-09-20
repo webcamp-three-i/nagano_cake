@@ -2,7 +2,7 @@
 
   <%= link_to customer_product_path(product.id), class: "btn-link", :style=>"color:#0099FF;" do %>
       <div id="img_field" class="product">
-        <%= attachment_image_tag(product, :image, size: "180x130", fallback: "no_image.jpg") %>
+        <%= attachment_image_tag(product, :image, size: "180x130", fallback: "no_img.jpg") %>
       </div>
       <p class="products-name">
         <%= product.name %>

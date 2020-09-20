@@ -1,14 +1,14 @@
 class Customer::CartItemsController < ApplicationController
 
   before_action :authenticate_customer!
-  before_action :set_cart_item, only: [:index, :update, :create, :destroy, :destroy_all]
+  before_action :set_cart_item, only: [:update, :destroy]
   before_action :set_customer
 
   def create
     @cart_item = current_customer.cart_items.build(cart_item_params) #親モデルの属する子モデルのインスタンス作成(newインスタンスと一緒)
-    @current_item =  CartItem.find_by(product_it: @cart_item, customer_id: @cart_item.customer_id)
+    @current_item =  CartItem.find_by(product_id: @cart_item.product_id, customer_id: @cart_item.customer_id)
     if @current_item.nil? #カートに同じ商品がなかったら(同じ商品をデータベースに重複して保存させないif文)
-      if @cart_item.save
+      if @cart_item.save!
         flash[:success] = "商品が追加されました"
         redirect_to customer_cart_items_path
       else 
@@ -58,7 +58,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def cart_item_params #カートに入れるボタンを実行でStrong Parametersを定義して受け取る
-    prams.require(:cart_item).permit(:customer_id, :product_id, :quantity)
+    params.require(:cart_item).permit(:customer_id, :product_id, :quantity)
   end
 
 end
