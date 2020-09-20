@@ -1,0 +1,44 @@
+<h2>注文情報入力</h2>
+
+<%= form_with model: @order, url: confirm_customer_orders_path, method: :post, local: true do |f| %>
+
+  <h3><strong><%= f.label :支払方法 %></strong></h3>
+    <label>
+      <%= f.radio_button :payment_method, :"クレジットカード" %>クレジットカード
+    </label>
+    <label>
+      <%= f.radio_button :payment_method, :"銀行振込" %>銀行振込
+    </label>
+
+  <h3><strong><%= f.label :お届け先 %></strong></h3>
+    <label>
+      <%= f.radio_button :add, 1 %>ご自身の住所
+    </label>
+      <p>
+        <%= @customer.postal_code %>
+        <%= @customer.residence %>
+        <%= @customer.first_name %>
+        <%= @customer.last_name %>
+      </p>
+    <label>
+      <%= f.radio_button :add, 2 %>登録済み住所から選択
+    </label>
+      <p>
+        <%= f.collection_select :residence, @customer.residence, :id, :address %> <!--不明箇所-->
+      </p>
+    <label>
+      <%= f.radio_button :add, 3 %>新しいお届け先
+    </label>
+      <p>
+        <%= f.fields_for :new_add do |na| %> <!--親モデル@orderの子モデルnew_addを-->
+          <strong>郵便番号(ハイフンなし)</strong>
+            <%= na.text_field :postal_code %>
+          <strong>住所</strong>
+            <%= na.text_field :address %>
+          <strong>宛名</strong>
+            <%= na.text_field :name %>
+        <% end %>
+      </p>
+
+    <%= f.submit "確認画面へ進む" %>
+<% end %>
