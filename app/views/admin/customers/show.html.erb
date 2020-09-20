@@ -1,29 +1,28 @@
-<h2 class="head-line title_h2 text-center"><%= full_name(@customer) %>さんの会員詳細</h2>
+<h2 class="head-line title_h2 text-center"><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h2>
   <div class="row">
     <div class="col-xs-8">
       <div class="field">
 
         <p>
           顧客ID　　　　　<%= @customer.id %>
-          <% if @customer.is_valid == true %>
-            <span>　
-              <i class="fas fa-bullseye blue"></i>退会済
-          <% elsif @customer.is_valid == false %>
-            　<i class="fas fa-bullseye red"></i>有効会員
-          </span>
+
+          <% if @customer.is_valid == "Available" %>
+              <span>　<i class="btn-primary">有効会員</i>
+          <% elsif @customer.is_valid == "Invalid" %>
+            　<i class="btn-danger">退会済み</i></span>
           <% end %>
         </p>
 
       </div>
       <div class="field">
         <p>
-          氏名　　　　　　<%= full_name(@customer) %>
+          氏名　　　　　　<%= @customer.first_name %><%= @customer.last_name %>
         </p>
       </div>
 
       <div class="field">
         <p>
-          フリガナ　　　　<%= kana_full_name(@customer) %>
+          フリガナ　　　　<%= @customer.kana_first_name %><%= @customer.kana_last_name %>
         </p>
       </div>
 

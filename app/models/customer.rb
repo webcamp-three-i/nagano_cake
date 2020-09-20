@@ -19,7 +19,7 @@ class Customer < ApplicationRecord
   #退会機能（有効会員はtrue、退会済み会員はfalse、有効会員はログイン可能)
   enum is_valid: {Available: true, Invalid: false}
     def active_for_authentication?
-      super && (self.is_valid === "Available")
+      super && (self.is_valid == "Available")
     end
 
 end
