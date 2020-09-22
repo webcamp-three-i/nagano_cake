@@ -1,25 +1,34 @@
-<h2 class="head-line title_h2 text-left" >ジャンル編集</h2>
-
-  <% if @genre.errors.any? %>
-  <% end %>
-
-  <%= form_for @genre, :url => {:action => :update} do |f| %>
-
-
-
-
-
-  <div>
-    ジャンル
-      <%= f.text_field :name  %>
-      <%= f.radio_button :valid_flag, true %>
-      <%= f.label :valid_flag, "有効", {value: :true, style: "display: inline-block;"} %>
-      <%= f.radio_button :valid_flag, false %>
-      <%= f.label :valid_flag, "無効", {value: :false, style: "display: inline-block;"} %>
-      <%= f.submit "変更を保存する", class: "btn btn-info" %>
-    </div>
-  <% end %>
-<br>
+<div class="row">
   <div class="col-xs-12">
-    <%= link_to "戻る", admin_genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
+    <br>
+    <div class="col-xs-1"></div>
+    <h2 class="col-xs-2 well">ジャンル編集</h2>
   </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <br><br>
+    <div class="col-xs-1"></div>
+      <%= form_for @genre, :url => {:action => :update} do |f| %>
+        <div>
+        ジャンル
+          <%= f.text_field :name  %>
+          <%= f.radio_button :valid_flag, true %>
+          <%= f.label :valid_flag, "有効", {value: :true, style: "display: inline-block;"} %>
+          <%= f.radio_button :valid_flag, false %>
+          <%= f.label :valid_flag, "無効", {value: :false, style: "display: inline-block;"} %>
+          <%= f.submit "変更を保存する", class: "btn btn-info" %>
+        </div>
+      <% end %>
+      <br><br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="col-xs-1"><%= link_to "戻る", admin_genres_path, class: "glyphicon glyphicon-home btn btn-info" %></div>
+  </div>
+</div>

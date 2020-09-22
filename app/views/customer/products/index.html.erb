@@ -26,10 +26,11 @@
 		<div class="row">
 			<div class="clearfix product-box col-xs-offset-3">
 				<% @products.each do |product| %>
-				  <div class="product-container col-xs-3">
+				  	<div class="product-container col-xs-3">
 
 						<%= link_to customer_product_path(product.id), class: "btn-link", :style=>"color:#0099FF;" do %>
 								<div id="img_field" class="product">
+									<br>
 									<%= attachment_image_tag(product, :image, size: "180x130", fallback: "no_img.jpg") %>
 								</div>
 								<p class="products-name">
