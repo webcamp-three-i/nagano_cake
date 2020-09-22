@@ -1,25 +1,60 @@
 
   <%= f.attachment_field :image %>
-  <div class="product-form">
-    <%= f.label :"商品名" %>
-    <%= f.text_field :name %>
+
+  <div class="row">
+    <div class="product-form">
+      <div class="col-xs-4">
+        <%= f.label :"商品名" %>
+      </div>
+      <div class="col-xs-8">
+        <%= f.text_field :name%>
+      </div>
+    </div>
   </div>
-  <div class="product-form">
-    <%= f.label :"商品説明" %>
-    <%= f.text_area :description %>
+
+  <div class="row">
+    <div class="product-form">
+      <div class="col-xs-4">
+        <%= f.label :"商品説明" %>
+      </div>
+      <div class="col-xs-8">
+        <%= f.text_area :description %>
+      </div>
+    </div>
   </div>
-  <div class="product-form">
-    <%= f.label :"ジャンル" %>
-    <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %> 
+
+  <div class="row">
+    <div class="product-form">
+      <div class="col-xs-4">
+        <%= f.label :"ジャンル" %>
+      </div>
+      <div class="col-xs-8">
+        <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %> 
     <!--DBから@genresの配列データを表示。属性名:genre_id、配列データ:@genres、値:id、表示名:name、オプション:include_blank-->
+      </div>
+    </div>
   </div>
-  <div class="product-form">
-    <%= f.label :"税抜価格" %>
-    <%= f.text_field :price_without_tax %>
+
+  <div class="row">
+    <div class="product-form">
+      <div class="col-xs-4">
+        <%= f.label :"税抜価格" %>
+      </div>
+      <div class="col-xs-8">
+        <%= f.text_field :price_without_tax %>
+      </div>
+    </div>
   </div>
-  <div class="product-form">
-    <%= f.label :"販売ステータス" %>
-    <%= f.select :sales_status, [["販売中", true ], ["販売停止中", false]] %> <!--ここの選択で商品一覧に販売ステータスのif文が起動-->
+
+  <div class="row">
+    <div class="product-form">
+      <div class="col-xs-4">
+        <%= f.label :"販売ステータス" %>
+      </div>
+      <div class="col-xs-8">
+        <%= f.select :sales_status, [["販売中", true ], ["販売停止中", false]] %> <!--選択で商品一覧に販売ステータスのif文が起動-->
+      </div>
+    </div>
   </div>
   
   

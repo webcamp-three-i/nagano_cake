@@ -1,3 +1,5 @@
+<div class="container">
+
 <h2>注文履歴一覧</h2>
 
 <table class="table">
@@ -29,8 +31,10 @@
       </td>
       <td><%= @sum.floor + order.postage %></td> <!--@sumだけだと小数点が表示されるためfloorで切り捨てる-->
       <td><%= order.order_status %></td>
-      <td><%= link_to "表示する", customer_order_path(order), class: "btn btn-sm btn-danger" %></td>
+      <td><%= link_to "表示する", customer_order_path(order), class: "btn btn-primary" %></td>
     </tr>
   </tbody>
   <% end %>
 </table>
+
+</div>

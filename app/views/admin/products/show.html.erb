@@ -1,25 +1,64 @@
-<div class="container">
+<div class="container", style="padding-left: 300px">
 
 <h2>商品詳細</h2>
 
-<%= attachment_image_tag @product, :image %>
+<div class="row">
+<%= attachment_image_tag @product, :image, :fill, 100, 100, fallback: "no_img.jpg" %>
 
-<p>商品名:<%= @product.name %></p>
+  <div class="row">
+    <div class="col-xs-4">
+      <p>商品名</p>
+    </div>
+    <div class="col-xs-8">
+      <%= @product.name %>
+    </div>
+  </div>
 
-<p>商品説明:<%= @product.description %></p>
+  <div class="row">
+    <div class="col-xs-4">
+      <p>商品説明</p>
+    </div>
+    <div class="col-xs-8">
+      <%= @product.description %>
+    </div>
+  </div>
 
-<p>ジャンル:<%= @product.genre.name %></p>
+  <div class="row">
+    <div class="col-xs-4">
+      <p>ジャンル</p>
+    </div>
+    <div class="col-xs-8">
+      <%= @product.genre.name %>
+    </div>
+  </div>
 
-<p>税込価格(税別価格):</p> <!--表示方法まだ分かってないです-->
+  <div class="row">
+    <div class="col-xs-4">
+      <p>税込価格</p>
+    </div>
+    <div class="col-xs-8">
+      <%= price_include_tax(@product.price_without_tax) %>
+    </div>
+  </div>
 
-<p>販売ステータス:
-  <% if @product.sales_status == true %> <!--もし商品の販売ステータスがtrueなら-->
-    <span>販売中</span>
-  <% else %>
-    <span>販売停止中<span>
-  <% end %>
-</p>
+  <div class="row">
+    <div class="col-xs-4">
+      <p>販売ステータス</p>
+    </div>
+    <div class="col-xs-8">
+      <% if @product.sales_status == true %> <!--もし商品の販売ステータスがtrueなら-->
+        <span>販売中</span>
+      <% else %>
+        <span>販売停止中<span>
+      <% end %>
+    </div>
+  </div>
 
-<%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-primary" %>
+  <div class="admin-product-edit", style="float: right;">
+  <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-primary" %>
+  </div>
+
+
+</div>
 
 </div>
