@@ -19,18 +19,28 @@
  /*ヘッダーのデザイン*/
 
 header{
-    background-color: #EFEBE9;
+    background-color: #D7CCC8;
  }
 nav{
-	line-height: 70px;
+	line-height: 100px;
 	li{
 		float: left;
-	    padding: 0 30px;
+	    padding: 0 16px;
 	    list-style: none;}
-    a {
-	    color: #000; }
 }
 .navbar-right{
 	span{
     	float: left; }
+	a {
+	    color: #3E2723;
+	    background-color:#EFEBE9;
+	    border-radius: 10px;
+	    padding: 16px;
+	    text-decoration: none; }
+}
+
+/*エラーメッセージ*/
+
+.field_with_errors{
+	display: inline;
 }
