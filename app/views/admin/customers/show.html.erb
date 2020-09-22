@@ -1,58 +1,45 @@
-<h2 class="head-line title_h2 text-center"><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h2>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="col-xs-1"></div>
+    <h2 class="col-xs-4 well"><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h2>
+  </div>
+</div>
+
+
   <div class="row">
-    <div class="col-xs-8">
-      <div class="field">
+    <div class="col-xs-12">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-5">
+          <br><br>
 
-        <p>
-          顧客ID　　　　　<%= @customer.id %>
+          <p>
+            顧客ID　　　　　<%= @customer.id %>
+            <% if @customer.is_valid == "Available" %>
+                <span>　<i class="btn-primary">有効会員</i>
+            <% elsif @customer.is_valid == "Invalid" %>
+              　<i class="btn-danger">退会済み</i></span>
+            <% end %>
+          </p>
 
-          <% if @customer.is_valid == "Available" %>
-              <span>　<i class="btn-primary">有効会員</i>
-          <% elsif @customer.is_valid == "Invalid" %>
-            　<i class="btn-danger">退会済み</i></span>
-          <% end %>
-        </p>
+          <br>
+          <p>氏名　　　　　　<%= @customer.first_name %><%= @customer.last_name %></p>
+          <br>
+          <p>フリガナ　　　　<%= @customer.kana_first_name %><%= @customer.kana_last_name %></p>
+          <br>
+          <p>郵便番号　　　　<%= @customer.postal_code %></p>
+          <br>
+          <p>住所　　　　　　<%= @customer.residence %></p>
+          <br>
+          <p>電話番号　　　　<%= @customer.phone_number %></p>
+          <br>
+          <p>メールアドレス　<%= @customer.email%></p>
 
-      </div>
-      <div class="field">
-        <p>
-          氏名　　　　　　<%= @customer.first_name %><%= @customer.last_name %>
-        </p>
-      </div>
+          <div class="actions">
+            <br><br>
+            <%= link_to "編集する",edit_admin_customer_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@customer.id}" %>
+            <%= link_to " 注文履歴一覧を見る", admin_orders_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+          </div>
 
-      <div class="field">
-        <p>
-          フリガナ　　　　<%= @customer.kana_first_name %><%= @customer.kana_last_name %>
-        </p>
-      </div>
-
-      <div class="field">
-        <p>
-          郵便番号　　　　<%= @customer.postal_code %>
-        </p>
-      </div>
-
-      <div class="field">
-        <p>
-          住所　　　　　　<%= @customer.residence %>
-        </p>
-      </div>
-
-      <div class="field">
-        <p>
-          電話番号　　　　<%= @customer.phone_number %>
-        </p>
-      </div>
-
-      <div class="field">
-        <p>
-          メールアドレス　<%= @customer.email%>
-        </p>
-      </div>
-
-      <div class="actions">
-        <%= link_to "編集する",edit_admin_customer_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@customer.id}" %>
-        <%= link_to " 注文履歴一覧を見る", "#", class: "glyphicon glyphicon-folder-open btn btn-info" %>
       </div>
     </div>
   </div>
