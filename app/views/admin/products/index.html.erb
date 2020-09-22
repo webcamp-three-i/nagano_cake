@@ -1,0 +1,45 @@
+<div class="container">
+
+<h2>商品一覧</h2>
+
+<div class="add-product", style="padding: 0 0 30px 950px;">
+  <%= link_to new_admin_product_path do %>
+    <i class="fas fa-plus"></i>
+  <% end %>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td>
+        <%= link_to admin_product_path(product) do %>
+          <%= product.name %>
+        <% end %>
+      </td>
+      <td><%= product.price_without_tax %></td>
+      <td><%= product.genre.name %></td>
+      <td>
+        <% if product.sales_status == true %> <!--もし販売ステータスがtrueなら-->
+          <p>販売中</p>
+        <% else %>
+          <p>販売停止中</p>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</div>

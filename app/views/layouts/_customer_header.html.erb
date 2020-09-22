@@ -1,0 +1,29 @@
+<!-- 顧客側・ゲスト用ヘッダー -->
+
+<nav class="nav navbar-nav navbar-left">
+  <%= link_to  root_path do %>
+    <img src="/assets/logo.png" alt="logo" >
+  <% end %>
+</nav>
+
+<nav class="nav navbar-nav navbar-right">
+  <ul >
+    <% if customer_signed_in? %>
+
+      <span>
+        ようこそ、<%= current_customer.first_name %>
+        <%= current_customer.last_name %>さん！
+      </span>
+
+      <li><%= link_to 'マイページ', customer_path(current_customer) %></li>
+      <li><%= link_to '商品一覧', customer_products_path %></li>
+      <li><%= link_to 'カート', customer_cart_items_path %></li>
+      <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to 'About', home_about_path %></li>
+      <li><%= link_to '商品一覧', customer_products_path %></li>
+      <li><%= link_to '新規登録', new_customer_registration_path %></li>
+      <li><%= link_to 'ログイン', new_customer_session_path %></li>
+    <% end %>
+  </ul>
+</nav>
