@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   	resources :genres,only: [:index,:create,:edit,:update, :show]
 
   	resources :orders,only: [:index,:show,:update]
-    resource :order_products,only: [:update]
+    resources :order_products,only: [:index, :show, :update]
 
   	get 'search' => 'search#search'
   	end
