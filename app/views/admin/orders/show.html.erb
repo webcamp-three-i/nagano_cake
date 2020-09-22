@@ -1,9 +1,52 @@
+<div class="container">
+
 <h2>注文履歴詳細</h2>
 
-<h4>購入者</h4>
+<h4>購入者: <%= @order.name %></h4>
 
-<h4>配送先</h4>
+<h4>配送先: <%= @order.address %></h4>
 
-<h4>支払方法</h4>
+<h4>支払方法: <%= @order.payment_method %></h4>
 
-<h4>注文ステータス</h4>
+<%= form_with model: @order, url: admin_order_path(@order), method: :PATCH, local: true do |f| %>
+<h4>注文ステータス:</h4>
+<%= f.select :order_status, Order.order_statuses.keys %>
+<%= f.submit "更新" %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+       <% @sub_sum = 0 %>
+       <% @order.order_products.each do |order_product| %>
+  <tbody>
+   <tr>
+     <td>
+         <%= order_product.product.name %>
+     </td>
+     <td><%= price_include_tax(order_product.product.price_without_tax)  %></td>
+     <td><%= order_product.quantity %></td>
+     <td>
+       <% @sub_sum = price_include_tax(order_product.product.price_without_tax) * order_product.quantity %>
+       <%= @sub_sum.floor %>
+     </td>
+     <td>
+       <%= form_with model: order_product, url: admin_order_product_path(order_product), method: :patch, local: true do |f| %>
+       <%= f.select :production_status, OrderProduct.production_statuses.keys %>
+      </td>
+     <td><%= f.submit "更新" %></td>
+       <% end %>
+   </tr>
+  </tbody>
+       <% end %>
+</table>
+
+</div>

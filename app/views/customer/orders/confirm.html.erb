@@ -1,6 +1,10 @@
+<div class="container">
+
 <h2>注文情報確認</h2>
 
-<table class="table">
+<div class="row">
+<div class="col-xs-9">
+<table class="table table-hover table-inverse table-bordered">
   <thead>
     <tr>
       <th>商品名</th>
@@ -13,10 +17,13 @@
     <% sum_all = 0 %>
     <% @cart_items.each do |cart_item| %>
     <tr>
-      <td><%= attachment_image_tag cart_item.product, :image, :fill, 100, 100, fallback: "no_img.jpg" %></td>
-      <td><%= cart_item.product.name %></td>
+      <td>
+        <%= attachment_image_tag cart_item.product, :image, :fill, 10, 10, fallback: "no_img.jpg" %>
+        <%= cart_item.product.name %>
+      </td>
+      <td><%= price_include_tax(cart_item.product.price_without_tax) %></td>
       <td><%= cart_item.quantity %></td>
-      <td><%= price_include_tax(cart_item.product.price_without_tax).to_i %></td>
+      <td><%= price_include_tax(cart_item.product.price_without_tax) * cart_item.quantity %></td>
       <td>
         <% sum_product = price_include_tax(cart_item.product.price_without_tax).to_i * cart_item.quantity %>
         <% sum_all += sum_product %>
@@ -25,8 +32,10 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
-<table>
+<div class="col-xs-3">
+<table class="table table-hover table-inverse table-bordered">
   <thead>
     <tr><th>送料</th><td><%= @order.postage %></td></tr>
     <tr><th>商品合計</th><td><%= sum_all.to_i %></td></tr>
@@ -39,6 +48,8 @@
     </tr>
   </thead>
 </table>
+</div>
+</div>
 
 <h2>支払方法</h2>
   <%= @order.payment_method %>
@@ -59,3 +70,5 @@
   <%= f.submit "購入を確定する" %>
 
 <% end %>
+
+</div>
