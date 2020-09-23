@@ -1,5 +1,57 @@
+
 <div class="container">
 	<div class="row">
+		<h2 class="well well-sm col-xs-2 text-center">マイページ</h2>
+	</div>
 
+	<div class="row">
+		<strong class="col-xs-1">登録情報</strong>
+			<%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-primary col-xs-1 col-xs-offset-1" %>
+			<%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-primary col-xs-2 col-xs-offset-1" %>
+	</div>
+
+	<div class="row">
+		<br>
+		<div class="col-xs-7">
+			<table class="table table-hover table-inverse table-bordered">
+				<tbody>
+					<tr>
+						<td class="active">氏名</td>
+						<td><%= @customer.first_name %><%= @customer.last_name %></td>
+					</tr>
+					<tr>
+						<td class="active">カナ</td>
+						<td><%= @customer.kana_first_name %><%= @customer.kana_last_name %></td>
+					</tr>
+					<tr>
+						<td class="active">郵便番号</td>
+						<td><%= @customer.postal_code %></td>
+					</tr>
+					<tr>
+						<td class="active">住所</td>
+						<td><%= @customer.residence %></td>
+					</tr>
+					<tr>
+						<td class="active">電話番号</td>
+						<td><%= @customer.phone_number %></td>
+					</tr>
+					<tr>
+						<td class="active">メールアドレス</td>
+						<td><%= @customer.email %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<strong class="col-xs-1">配送先</strong>
+		<%= link_to "一覧を見る", customer_shipping_addresses_path, class: "btn btn-primary" %>
+	</div>
+
+	<div class="row">
+		<br>
+		<strong class="col-xs-1">注文履歴</strong>
+		<%= link_to "一覧を見る", customer_orders_path, class: "btn btn-primary" %>
 	</div>
 </div>
