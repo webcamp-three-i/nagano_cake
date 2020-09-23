@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-3">
+			<br>
 			<h3>ジャンル検索</h3>
 			<% @genres.each do |genre| %>
 				<%= link_to customer_products_path(genre: genre.id) do %>
@@ -9,19 +10,22 @@
 			<% end %>
 		</div>
 
-		<div class="<col-xs-6 col-xs-offset-3">
-			<p>
+	<div class="row">
+			<div class="<col-xs-offset-3>">
+				<br><br>
+				<p class="well col-xs-4 text-center">
 				ようこそ、NaganoCakeへ！<br>
 				このサイトは、ケーキ販売のECサイトになります。<br>
 				会員でない方も商品の閲覧はできますが、<br>
 				購入には会員登録が必要になります。
-			</p>
+				</p>
+			</div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-offset-3">
-			<h2>おすすめ商品</h2>
+			<h2>オススメ商品</h2>
 		</div>
 	</div>
 
@@ -49,9 +53,10 @@
 			<% end %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-offset-11">
-			<%= link_to "もっと見る>", customer_products_path %>
+		<div class="row">
+			<div class="col-xs-offset-11">
+				<%= link_to "もっと見る>", customer_products_path %>
+			</div>
 		</div>
 	</div>
 </div>
