@@ -1,52 +1,5 @@
 <div class="container">
 	<div class="row">
-		<h2 style="padding: 24px 0;">マイページ</h2>
-	</div>
 
-	<div class="row">
-		<strong class="col-xs-1" style="line-height: 30px;" >登録情報</strong>
-		<%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-primary", style: "margin-right: 8px; padding: 6px 30px;" %>
-		<%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-primary padding: 6px 30px;" %>
-	</div>
-
-	<div class="row">
-		<table class="table table-bordered" style="width: 60%; margin: 32px 0;">
-			<tbody>
-				<tr>
-					<td class="active col-xs-2">氏名</td>
-					<td class="col-xs-6"><%= @customer.first_name %><%= @customer.last_name %></td>
-				</tr>
-				<tr>
-					<td class="active col-xs-2">カナ</td>
-					<td class="col-xs-6"><%= @customer.kana_first_name %><%= @customer.kana_last_name %></td>
-				</tr>
-				<tr>
-					<td class="active col-xs-2">郵便番号</td>
-					<td class="col-xs-6"><%= @customer.postal_code %></td>
-				</tr>
-				<tr>
-					<td class="active col-xs-2">住所</td>
-					<td class="col-xs-6"><%= @customer.residence %></td>
-				</tr>
-				<tr>
-					<td class="active col-xs-2">電話番号</td>
-					<td class="col-xs-6"><%= @customer.phone_number %></td>
-				</tr>
-				<tr>
-					<td class="active col-xs-2">メールアドレス</td>
-					<td class="col-xs-6"><%= @customer.email %></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="row" style="margin-bottom: 16px;" >
-		<strong class="col-xs-1" style="line-height: 30px;">配送先</strong>
-		<%= link_to "一覧を見る", customer_shipping_addresses_path, class: "btn btn-primary", style: "padding: 6px 30px;" %>
-	</div>
-
-	<div class="row">
-		<strong class="col-xs-1" style="line-height: 30px;">注文履歴</strong>
-		<%= link_to "一覧を見る", customer_orders_path, class: "btn btn-primary", style: "padding: 6px 30px;" %>
 	</div>
 </div>
