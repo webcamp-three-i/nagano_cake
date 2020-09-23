@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_070644) do
     t.string "postal_code"
     t.string "residence"
     t.string "phone_number"
-    t.boolean "is_valid", default: true, null: false
+    t.boolean "is_valid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -53,10 +53,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_070644) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
-    t.boolean "valid_flag", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "order_products", force: :cascade do |t|
@@ -74,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_070644) do
     t.string "postal_code"
     t.string "address"
     t.string "name"
-    t.integer "postage", default: 800
+    t.integer "postage"
     t.integer "billing_amount"
     t.integer "payment_method", default: 0
     t.integer "order_status", default: 0

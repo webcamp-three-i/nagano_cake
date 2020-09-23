@@ -5,26 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <script src="https://kit.fontawesome.com/b5fa4724ff.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-      <div class="container">
-
-        <% if admin_signed_in? %>
-          <%= render 'layouts/admin_header' %>
-        <% else %>
-          <%= render 'layouts/customer_header' %>
-        <% end %>
-
-      </div>
-    </header>
-    <div class="container">
-      <%= notice %>
-    </div>
     <%= yield %>
   </body>
 </html>

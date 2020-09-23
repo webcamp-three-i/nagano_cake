@@ -13,38 +13,3 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
- /*ヘッダーのデザイン*/
-header{
-    background-color: #D7CCC8;
- }
-nav{
-	line-height: 100px;
-	li{
-		float: left;
-	    padding: 0 16px;
-	    list-style: none;}
-}
-.navbar-right{
-	span{
-    	float: left; }
-	a {
-	    color: #3E2723;
-	    background-color:#EFEBE9;
-	    border-radius: 10px;
-	    padding: 16px;
-	    text-decoration: none; }
-}
-
-/*エラーメッセージ*/
-
-.field_with_errors{
-	display: inline;
-}

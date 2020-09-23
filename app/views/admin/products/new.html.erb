@@ -1,8 +1,0 @@
-<h2>商品新規登録</h2>
-
-<%= form_for @product, url: admin_products_path do |f| %>
-  <%= render 'form', product: @product, f: f %>
-  <div class="product-form">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
