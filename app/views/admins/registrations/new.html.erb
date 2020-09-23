@@ -9,7 +9,7 @@
     <div class="row">
       <div class="field" style="padding-top: 16px;">
         <%= f.label :email, "メールアドレス", class: "col-xs-3" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-xs-4" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-xs-4",style: "padding: 0;" %>
       </div>
     </div>
 
@@ -21,14 +21,14 @@
             <em>(<%= @minimum_password_length %>文字以上)</em>
           <% end %>
         </div>
-        <%= f.password_field :password, autocomplete: "new-password", class: "col-xs-4" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "col-xs-4",style: "padding: 0;" %>
       </div>
     </div>
 
     <div class="row">
       <div class="field" style="padding: 16px 0;">
         <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-xs-3" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-xs-4" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-xs-4",style: "padding: 0;" %>
       </div>
     </div>
 

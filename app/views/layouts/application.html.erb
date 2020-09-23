@@ -11,7 +11,9 @@
   </head>
 
   <body>
-    <header>
+   
+    <div class="wrapper">
+       <header>
       <div class="container">
 
         <% if admin_signed_in? %>
@@ -22,9 +24,15 @@
 
       </div>
     </header>
-    <div class="container">
+      <div class="container">
       <%= notice %>
     </div>
     <%= yield %>
+
+    <footer>
+      
+    </footer>
+    </div>
+    
   </body>
 </html>
