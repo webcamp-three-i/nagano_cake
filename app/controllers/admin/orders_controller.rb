@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    # 遷移元のリンクページに持たせたパラメーターを変数で振り分ける
+    # 遷移元のリンクページに持たせたパラメーターを変数で振り分ける（order_sort）
     # 管理者側トップページから遷移する本日の注文一覧
     if params[:order_sort] == "0"
       @orders = Order.where(created_at: Time.zone.now.all_day).page(params[:page]).per(10)
