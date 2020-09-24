@@ -1,9 +1,21 @@
 class Admin::OrdersController < ApplicationController
-  
+
   before_action :authenticate_admin!
 
   def index
-    @orders = Order.all.page(params[:page]).per(10)
+    # 遷移元のリンクページに持たせたパラメーターを変数で振り分ける
+    # 管理者側トップページから遷移する本日の注文一覧
+    if params[:order_sort] == "0"
+      @orders = Order.where(created_at: Time.zone.now.all_day).page(params[:page]).per(10)
+      # 管理者側顧客詳細ページから遷移する該当顧客の注文一覧
+    elsif params[:order_sort] == "1"
+      # 顧客詳細ページの注文履歴のリンクにcustomer_id: @customer.idを持たせることで顧客と注文履歴を紐付ける
+      @customer = Customer.find(params[:customer_id])
+      @orders = @customer.orders.page(params[:page]).per(10)
+      # ヘッダーから遷移する全顧客の注文一覧
+    else
+      @orders = Order.all.page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -27,7 +39,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   private
-  
+
   def order_params
     params.require(:order).permit(:order_status)
   end
