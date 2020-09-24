@@ -29,8 +29,8 @@
         <%= f.label :"ジャンル" %>
       </div>
       <div class="col-xs-8">
-        <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %> 
     <!--DBから@genresの配列データを表示。属性名:genre_id、配列データ:@genres、値:id、表示名:name、オプション:include_blank-->
+        <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %> 
       </div>
     </div>
   </div>

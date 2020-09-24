@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :set_genres, only: [:new, :edit, :index, :create, :update] #productsコントローラで定義済みのアクションを実行前に作動
+  before_action :authenticate_admin!
 
   def index
     @products = Product.all
