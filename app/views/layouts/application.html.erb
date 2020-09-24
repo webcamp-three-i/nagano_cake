@@ -11,10 +11,10 @@
   </head>
 
   <body>
-   
+
     <div class="wrapper">
-       <header>
-      <div class="container">
+      <header>
+        <div class="container">
 
         <% if admin_signed_in? %>
           <%= render 'layouts/admin_header' %>
@@ -22,9 +22,11 @@
           <%= render 'layouts/customer_header' %>
         <% end %>
 
-      </div>
-    </header>
+        </div>
+      </header>
+
       <div class="container">
+
       <%= notice %>
     </div>
 
@@ -41,10 +43,8 @@
 
     <%= yield %>
 
-    <footer>
-      
-    </footer>
+
+      <footer></footer>
     </div>
-    
   </body>
 </html>
