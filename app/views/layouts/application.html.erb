@@ -36,9 +36,10 @@
         </div>
       </header>
 
-      <div class="container">
-
-      <%= notice %>
+      <div class="container" style="padding-top: 10px; color: green;">
+        <% if flash[:notice] %>
+          <p class="notice"><%= flash[:notice] %></p>
+        <% end %>
     </div>
 
     <%= yield %>

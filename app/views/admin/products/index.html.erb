@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h2>商品一覧</h2>
+  <h2 class="col-xs-3 well text-light">商品一覧</h2>
 
   <div class="add-product", style="padding: 0 0 30px 950px;">
     <%= link_to new_admin_product_path do %>
@@ -10,5 +10,7 @@
 
   <%= render 'index', products: @products %>
 
-  <div class= "text-center"><%= paginate(@products) %></div>
+  <div class= "text-center">
+    <%= paginate(@products) %>
+  </div>
 </div>
