@@ -2,7 +2,7 @@
       <!-- タイトルと全消去ボタン -->
       <div class="row">
         <div class="col-xs-10">
-          <h2>ショッピングカート</h2>
+          <h2 class="col-xs-4 well text-light">ショッピングカート</h2>
         </div>
         <div class="col-xs-2" style="padding-top: 10px;">
           <%= link_to 'カートを空にする', destroy_all_customer_cart_items_path, method: :delete, class: 'btn btn-danger', data: {confirm: "カートの商品を空にしますか？"} %>
@@ -63,9 +63,7 @@
           </tr>
         </tbody>
       </table>
-      <div class= "text-center">
-        <%= paginate(@cart_items) %>
-      </div>      
+    
 
       <!-- 合計金額と情報入力 -->
       <div class="row space">
