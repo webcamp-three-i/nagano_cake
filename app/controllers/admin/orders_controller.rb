@@ -25,7 +25,7 @@ class Admin::OrdersController < ApplicationController
     @order_products.each do |order_product|
       @sum_product += order_product.tax_included_price * 1.10 * order_product.quantity
     end
-    @sum_all = @sum_product.floor + @order.postage 
+    @sum_all = @sum_product.floor + @order.postage
   end
 
   def update
