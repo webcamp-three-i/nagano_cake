@@ -97,7 +97,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-    @orders = @customer.orders
+    @orders = @customer.orders.page(params[:page]).per(10)
   end
 
   def show
