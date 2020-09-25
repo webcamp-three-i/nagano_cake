@@ -13,7 +13,7 @@ class Customer::ProductsController < ApplicationController
 	end
 
 	def show
-		@genres = Genre.all
+		@genres = Genre.where(valid_flag: true)
 		@product = Product.find(params[:id])
 		@cart_item = CartItem.new
 	end
