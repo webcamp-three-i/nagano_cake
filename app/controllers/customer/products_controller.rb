@@ -2,7 +2,7 @@ class Customer::ProductsController < ApplicationController
 	before_action :authenticate_customer!, only: [:show]
 
 	def index
-		@genres = Genre.all
+		@genres = Genre.where(valid_flag: true)
 		# ジャンル検索された場合とそうでない場合
 		if params["genre"]
 			@products = Product.where(genre_id: params["genre"]).page(params[:page]).per(8)
