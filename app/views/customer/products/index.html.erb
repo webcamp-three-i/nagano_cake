@@ -27,7 +27,7 @@
 			<div class="clearfix product-box col-xs-offset-3">
 				<% @products.each do |product| %>
 				  	<div class="product-container col-xs-3">
-
+				  		<br>
 						<%= link_to customer_product_path(product.id), class: "btn-link", :style=>"color:#0099FF;" do %>
 								<div id="img_field" class="product">
 									<br>
@@ -44,12 +44,13 @@
 						<% elsif product.sales_status == false %>
 							<p class="soldout">売り切れ中</p>
 						<% end %>
-						<div class="text-center">
-						  <%= paginate(@products) %>
-						</div>
 					</div>
 				<% end %>
+
 			</div>
+				<div class="text-center">
+					<%= paginate(@products) %>
+				</div>
 		</div>
 	</div>
 </div>
