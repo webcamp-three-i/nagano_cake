@@ -9,9 +9,10 @@ class Order < ApplicationRecord
   }
 
   enum order_status: {
-    "制作不可": 0,
-    "制作待ち": 1,
+    "入金待ち": 0,
+    "入金確認": 1,
     "制作中": 2,
-    "制作完了": 3
+    "発送準備中": 3,
+    "発送済み": 4
   }
 end

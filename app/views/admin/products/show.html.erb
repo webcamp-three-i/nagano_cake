@@ -38,7 +38,7 @@
       <p>税込価格</p>
     </div>
     <div class="col-xs-8">
-      <%= price_include_tax(@product.price_without_tax) %>
+      <%= price_include_tax(@product.price_without_tax) %> (<%= @product.price_without_tax %>)円
     </div>
   </div>
 
@@ -49,7 +49,7 @@
     <div class="col-xs-8">
       <% if @product.sales_status == true %> <!--もし商品の販売ステータスがtrueなら-->
         <span>販売中</span>
-      <% else %>
+      <% else @product.sales_status == false %>
         <span>販売停止中<span>
       <% end %>
     </div>
