@@ -1,9 +1,9 @@
 <div class="container">
   <% if @model == 'customer' %>
     <h3>Customers search for '<%= @content %>' </h3>
-    <%= render 'admin/customers/index' , customers: @records %>  <!--パーシャル作成の場合。@recordsをusersに渡す。-->
+    <%= render 'admin/customers/index' , customers: @records %>  <!--パーシャル作成の場合。@recordsをcustomersに渡す。-->
   <% else @model == 'product' %>
     <h3>Products search for '<%= @content %>' </h3>
-    <%= render 'admin/products/index' , products: @records %> <!--パーシャル作成の場合。@recordsをbooksに渡す。-->
+    <%= render 'admin/products/index' , products: @records %> <!--パーシャル作成の場合。@recordsをproductsに渡す。-->
   <% end %>
 </div>
