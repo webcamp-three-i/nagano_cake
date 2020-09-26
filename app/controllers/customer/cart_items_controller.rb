@@ -30,7 +30,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def index
-    @cart_items = @customer.cart_items.all.page(params[:page]).per(10)
+    @cart_items = @customer.cart_items
   end
 
   def update
