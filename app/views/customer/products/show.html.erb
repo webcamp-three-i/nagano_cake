@@ -28,7 +28,7 @@
                 <%= @product.description %>
               </div>
               <div class="field product-price">
-                <h3>¥ <%= (@product.price_without_tax).to_s(:delimited) %>
+                <h3>¥ <%=  price_include_tax(@product.price_without_tax) %>
                   <span class="tax">(税込)</span>
                 </h3>
               </div>
