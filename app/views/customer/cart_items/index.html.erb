@@ -65,11 +65,11 @@
       </table>
 
       <!-- 合計金額と情報入力 -->
-      <div class="row space">
-        <div class="col-xs-10 offset-xs-7 space-sm">
+      <div class="row">
+        <div class="col-xs-10">
           <%= link_to "買い物を続ける", root_path, class: "btn btn-primary "%>
         </div>
-        <div class="col-xs-2 space-sm">
+        <div class="col-xs-2">
           <div class="row">
             <table class="table table-bordered table-condensed">
               <tr>
@@ -81,8 +81,8 @@
         </div>
       </div>
       
-      <div class="row space">
-        <div class="col-xs-3 offset-lxs-9">
+      <div class="row">
+        <div class="col-xs-3">
           <% if @cart_items.present? %>
             <%= link_to "情報入力に進む", new_customer_order_path, class: "btn-lg btn-success" %>
           <% else %>
@@ -90,6 +90,5 @@
           <% end %>
         </div>
       </div>
-    </div>
-  </div>
+    
 </div>

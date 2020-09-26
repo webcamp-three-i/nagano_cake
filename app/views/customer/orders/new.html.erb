@@ -52,9 +52,9 @@
       </div>
       <div class="row">
         <div class="col-xs-3", style="padding-left: 50px;">
-          <!--form_withで送信する@orderモデルのaddress属性。contorollerで定義したログイン会員。valueはid。表示するのは定義した住所。-->
+          <!--form_withで送信する@orderモデルのshipping_address属性。contorollerで定義したログイン会員。valueはid。表示するのは定義した住所。-->
           <label>
-            <%= f.collection_select :address, @shipping_addresses, :id, :order_address %>
+            <%= f.collection_select :shipping_addresses_id, @shipping_addresses, :id, :order_address %>
           </label> 
         </div>
       </div>
@@ -90,6 +90,7 @@
           <%= na.text_field :name %>
       </div>
           
+    
     <% end %>
       
     <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>

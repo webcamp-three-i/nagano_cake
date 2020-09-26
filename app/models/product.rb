@@ -4,6 +4,5 @@ class Product < ApplicationRecord
 	has_many :cart_items, dependent: :destroy
 	attachment :image
 
-	validates :genre_id, :name, :description, :price_without_tax, :sales_status, presence: true
   validates :description, length: {maximum: 200}
 end
