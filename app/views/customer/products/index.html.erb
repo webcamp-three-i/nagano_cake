@@ -44,12 +44,16 @@
 						<% elsif product.sales_status == false %>
 							<p class="soldout">売り切れ中</p>
 						<% end %>
-						<div class="text-center">
-						  <%= paginate(@products) %>
-						</div>
 					</div>
 				<% end %>
 			</div>
 		</div>
+
+			<div class="<col-xs-6 col-xs-offset-3">
+				<%= paginate(@products) %>
+			</div>
+
+
+
 	</div>
 </div>
