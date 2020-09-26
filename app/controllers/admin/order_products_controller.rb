@@ -19,7 +19,6 @@ class Admin::OrderProductsController < ApplicationController
           @order_product.order.update(order_status: "発送準備中")
         end
       end
-
       redirect_to admin_order_path(@order_product.order)
       flash[:notice] = "制作ステータスを変更しました"
     else

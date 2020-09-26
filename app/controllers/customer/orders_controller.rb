@@ -5,7 +5,7 @@ class Customer::OrdersController < ApplicationController
   
   def new
     @order = Order.new
-    @shipping_addresses = ShippingAddress.where(customer: current_customer) #配送先モデルからログイン会員を取得して定義
+    @shipping_addresses = ShippingAddress.where(customer_id: current_customer.id) #配送先モデルからログイン会員を取得して定義
   end
 
   def confirm #注文確認画面
@@ -18,18 +18,26 @@ class Customer::OrdersController < ApplicationController
     case @add
       when 1
         @order.postal_code = @customer.postal_code
-        @order.address = @customer.residence
-        @order.name = @customer.first_name + @customer.last_name
+        @order.address     = @customer.residence
+        @order.name        = @customer.first_name + @customer.last_name
       when 2
-        @sta = params[:order][:address].to_i
-        @address = ShippingAddress.find(@sta)
-        @order.postal_code = @address.postal_code
-        @order.address = @address.residence
-        @order.name = @address.name
+        @sta = params[:order][:shipping_addresses_id].to_i
+        
+          @address = ShippingAddress.find(@sta)
+          @order.postal_code = @address.postal_code
+          @order.address     = @address.residence
+          @order.name        = @address.name
+        
+
       when 3
+        if  params[:order][:new_add][:postal_code] == "" || 
+            params[:order][:new_add][:address] == "" || params[:order][:new_add][:name] == ""
+          redirect_to request.referer 
+        end
         @order.postal_code = params[:order][:new_add][:postal_code]
-        @order.address = params[:order][:new_add][:address]
-        @order.name = params[:order][:new_add][:name]
+        @order.address     = params[:order][:new_add][:address]
+        @order.name        = params[:order][:new_add][:name]
+      
     end
     #この下から請求金額の変数定義
     @cart_items = current_customer.cart_items
@@ -39,7 +47,6 @@ class Customer::OrdersController < ApplicationController
     
     end
     @order.billing_amount = @sum + @order.postage.to_i #商品の税込金額に送料を足して請求金額を定義
-    #binding.pry
   end
 
 
@@ -52,16 +59,16 @@ class Customer::OrdersController < ApplicationController
       case @add #上記定義で数字が1,2,3の場合で条件分岐
         when 1 #ご自身の住所の場合
           @order.postal_code = @customer.post_code
-          @order.residence = @customer.address
-          @order.name = @customer.first_name + @customer.last_name
+          @order.residence   = @customer.address
+          @order.name        = @customer.first_name + @customer.last_name
         when 2 #登録済み住所から選択の場合
           @order.post_code = params[:order][:postal_code] #form_withで送られてきたモデルとカラムを受け取る
-          @order.address = params[:order][:address]
+          @order.address   = params[:order][:address]
           @order.name = params[:order][:name]
-        when 3 #新しいお届け先の場合
+        when 3 #新しいお届け先の場合 
           @order.post_code = params[:order][:post_code]
-          @order.address = params[:order][:address]
-          @order.name = params[:order][:name]
+          @order.address   = params[:order][:address]
+          @order.name      = params[:order][:name]
       end
       @order.save
 
@@ -69,8 +76,8 @@ class Customer::OrdersController < ApplicationController
       if ShippingAddress.find_by(residence: @order.address).nil? #配送先モデルの住所が空であれば
         @address = ShippingAddress.new
         @address.postal_code = @order.postal_code
-        @address.residence = @order.address
-        @address.name = @order.name
+        @address.residence   = @order.address
+        @address.name        = @order.name
         @address.customer_id = current_customer.id
         @address.save
       end

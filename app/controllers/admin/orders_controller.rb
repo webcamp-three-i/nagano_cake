@@ -36,8 +36,6 @@ class Admin::OrdersController < ApplicationController
           order_product.update(production_status: "制作待ち")
         end
       end
-
-
       redirect_to admin_order_path(@order)
       flash[:notice] = "注文ステータスを変更しました"
     else
