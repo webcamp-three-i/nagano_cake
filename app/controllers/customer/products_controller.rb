@@ -8,7 +8,7 @@ class Customer::ProductsController < ApplicationController
 			@products = Product.where(genre_id: params["genre"]).page(params[:page]).per(8)
 			@genre = Genre.find(params["genre"])
 		else
-			@products = Product.where(sales_status: true).page(params[:page]).per(8)
+			@products = Product.where(sales_status: true).page(params[:page]).per(6)
 		end
 	end
 
