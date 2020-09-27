@@ -20,9 +20,6 @@
     )
 end
 
-
-
-
   Admin.create!(
     email: "admin@admin",
     password: 111111
