@@ -11,17 +11,7 @@ class Admin::SearchController < ApplicationController
   private
 
   def search_for(content, model, method) #上記のsearch_forメソッドを定義する。
-    if model == 'customer'
-      if method == 'perfect'
-        Customer.where('first_name LIKE ? AND last_name LIKE ?' , content, content )
-      elsif  method == 'forward'
-        Customer.where('first_name LIKE ? AND last_name LIKE ?' , content+'%' , content+'%' )
-      elsif  method == 'backward'
-        Customer.where('first_name LIKE ? AND last_name LIKE ?' , '%'+content , '%'+content )
-      else
-        Customer.where('first_name LIKE ? AND last_name LIKE ?' , '%'+content+'%', '%'+content+'%' )
-      end
-    elsif model == 'product'
+    if model == 'product'
       if method == 'perfect'
         Product.where('name LIKE ?' ,content)
       elsif method == 'forward'
